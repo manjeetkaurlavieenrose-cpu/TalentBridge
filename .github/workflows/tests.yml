@@ -1,0 +1,63 @@
+# Runs the full test suite and an end-to-end check of the real app on Windows, macOS and Linux for every push and pull request.
+# Push this folder to a GitHub repository and the results appear under the repository's "Actions" tab.
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        python: ["3.10", "3.13"]
+    env:
+      PYTHONUTF8: "1"
+      CI: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install Tesseract OCR (scanned-CV tests)
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then choco install tesseract --no-progress -y || echo "Tesseract not installed; OCR test will be skipped"
+          elif [ "$RUNNER_OS" = "macOS" ]; then brew install tesseract || true
+          else sudo apt-get update -qq && sudo apt-get install -y -qq tesseract-ocr; fi
+      - name: Install packages
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt -r requirements-anthropic.txt
+      - name: Unit and integration tests
+        working-directory: backend
+        run: python -m unittest discover -s tests -t . -v
+      - name: End-to-end check of the running app
+        run: python scripts/smoke_test.py
+
+  windows-setup-scripts:
+    # The double-click scripts a Windows user runs: setup, then the test script (which also starts the real app).
+    name: Windows setup_windows.bat + test_windows.bat
+    runs-on: windows-latest
+    env:
+      TB_NO_PAUSE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: setup_windows.bat dev
+        shell: cmd
+        run: setup_windows.bat dev
+      - name: test_windows.bat
+        shell: cmd
+        run: test_windows.bat
+      - name: Show the test log
+        if: always()
+        shell: cmd
+        run: type test-results-windows.txt

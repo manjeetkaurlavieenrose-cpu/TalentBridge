@@ -1,0 +1,4 @@
+# OPTIONAL: semantic CV<->job similarity (SEMANTIC_MATCH=1). Large: PyTorch (~200 MB on a Mac) plus a ~90 MB model
+# downloaded from huggingface.co on first use. The app works fully without it (it then uses word-overlap similarity).
+-r requirements.txt
+sentence-transformers>=3.0

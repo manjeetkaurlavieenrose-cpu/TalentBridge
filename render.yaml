@@ -1,0 +1,15 @@
+# One-click deploy on Render (https://render.com): the "Deploy to Render" button in README.md reads this file.
+# The free plan is a demonstration host: it goes to sleep after about 15 minutes without visitors (the first visit then takes a
+# minute), and its data is wiped whenever it restarts. Demo mode re-creates the fictional demo data every time, so the link always works.
+# For real use: change plan to "starter", add a disk (see docs/DEPLOY_ANYWHERE.md), set DEMO_SEED to "0" and fill in ADMIN_EMAIL / ADMIN_PASSWORD.
+services:
+  - type: web
+    name: talentbridge
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: DEMO_SEED
+        value: "1"
+      - key: DEMO_CANDIDATES
+        value: "1"

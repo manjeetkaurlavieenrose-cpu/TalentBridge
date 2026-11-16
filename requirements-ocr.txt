@@ -1,0 +1,3 @@
+# Optional pure-pip OCR engine for scanned CVs (when Tesseract cannot be installed). ~150 MB with its dependencies.
+# Tesseract gives better results: see WINDOWS_SETUP_GUIDE.md / MAC_SETUP_GUIDE.md.
+rapidocr_onnxruntime>=1.2

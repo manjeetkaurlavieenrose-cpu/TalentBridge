@@ -1,0 +1,6 @@
+# Everything needed to run the app on your own computer (no paid service, no internet needed after install).
+Flask>=3.0
+pdfplumber>=0.11
+python-docx>=1.1
+# Optional but recommended: a more robust web server than Flask's built-in one. The app works without it.
+waitress>=3.0

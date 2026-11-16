@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TalentBridge: start here</title>
+<style>
+  body{font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1d2630;background:#f4f5f3;margin:0;padding:28px 16px 80px}
+  main{max-width:780px;margin:0 auto}
+  h1{font:600 34px/1.15 Georgia,serif;margin:0 0 6px}h2{font:600 23px/1.25 Georgia,serif;margin:38px 0 10px}
+  .lead{font-size:19px;color:#414c58}
+  .card{background:#fff;border:1.5px solid #dde1dd;border-radius:14px;padding:18px 22px;margin:14px 0}
+  .card.win{border-left:8px solid #cfe3f7}.card.mac{border-left:8px solid #cdebd8}.card.ai{border-left:8px solid #ffd9b8}
+  ol,ul{padding-left:22px}li{margin:7px 0}
+  code,.file{background:#e2f0ee;border-radius:6px;padding:1px 7px;font:600 .92em ui-monospace,Menlo,Consolas,monospace;white-space:nowrap}
+  table{border-collapse:collapse;width:100%;font-size:16px}td,th{text-align:left;padding:8px 10px;border-bottom:1px solid #e8ebe8;vertical-align:top}
+  .note{background:#fff1e3;border:1px solid #f2c79b;border-radius:10px;padding:10px 14px;margin:12px 0;font-size:16px}
+  .small{font-size:15px;color:#687482}
+</style>
+</head>
+<body>
+<main>
+<h1>TalentBridge: start here</h1>
+<p class="lead">This folder is the whole application. Nothing needs to be bought, and you do not need to be a developer. Follow the box for your computer.</p>
+
+<div class="card win">
+<h2 style="margin-top:0">On a Windows computer</h2>
+<ol>
+  <li><b>Once only: install Python.</b> Go to <b>python.org/downloads</b>, download Python, run the installer and <b>tick the box “Add python.exe to PATH”</b> on its first screen before pressing Install.</li>
+  <li>In this folder, double-click <span class="file">start_demo_windows.bat</span>. The first time it sets itself up (a few minutes, it needs the internet). If Windows shows a blue “Windows protected your PC” box, click <b>More info</b>, then <b>Run anyway</b>.</li>
+  <li>Your browser opens <b>http://localhost:5050</b> with the demo. Keep the black window open while you use the app; close it to stop the app.</li>
+</ol>
+<p class="small">For real use (your own data, kept in the <span class="file">data</span> folder) double-click <span class="file">start_windows.bat</span> instead.</p>
+</div>
+
+<div class="card mac">
+<h2 style="margin-top:0">On a Mac</h2>
+<ol>
+  <li><b>Once only: install Python</b> from <b>python.org/downloads</b> (run the installer with the default choices).</li>
+  <li>In this folder, <b>right-click</b> <span class="file">start_demo_mac.command</span> and choose <b>Open</b>, then <b>Open</b> again. (A plain double-click is refused the first time because the file came from the internet.)</li>
+  <li>Your browser opens <b>http://localhost:5050</b>. Keep the Terminal window open while you use the app; close it to stop the app.</li>
+</ol>
+<p class="small">For real use double-click <span class="file">start_mac.command</span> instead.</p>
+</div>
+
+<h2>Signing in to the demo</h2>
+<p>The sign-in page lists the demo logins, each with a <b>Fill in</b> button, so there is nothing to type.</p>
+<table>
+  <tr><th>Who</th><th>Email</th><th>Password</th></tr>
+  <tr><td>Recruiter</td><td>recruiter@talentbridge.demo</td><td>DemoRecruiter#2026</td></tr>
+  <tr><td>Candidate</td><td>priya.nair@talentbridge.demo</td><td>DemoCandidate#2026</td></tr>
+  <tr><td>Administrator</td><td>admin@talentbridge.demo</td><td>DemoAdmin#2026</td></tr>
+</table>
+<p>To try it as a new candidate, choose <b>I am a candidate</b>, register, and upload one of the made-up CVs from the <span class="file">sample_data</span> folder. <b>DEMO_SCRIPT.md</b> is a step-by-step tour you can read aloud while presenting.</p>
+<div class="note">Everyone in the demo is fictional. Do not upload real people’s CVs to the demo copy.</div>
+
+<div class="card ai">
+<h2 style="margin-top:0">Switching on the AI (free, no subscription, no account)</h2>
+<p>The app works straight away with its built-in engine. To have a real AI model read CVs, write the skill tests and score answers:</p>
+<ol>
+  <li>Install <b>Ollama</b> from <b>ollama.com/download</b>. It is a free program that runs the AI on your own computer. (On Windows the setup tries to install it for you.)</li>
+  <li>Start TalentBridge again. It finds Ollama by itself and downloads the AI model once (about 2 GB, so the first time takes a while). There is nothing to configure.</li>
+  <li>To check: the black/Terminal window says <i>“AI engine: ollama model qwen2.5:3b …”</i>, and results in the app are labelled <i>“AI-assisted (local model …)”</i>. If a result says <i>“Rule-based”</i>, the model was not ready yet for that result.</li>
+</ol>
+<p class="small">The computer should have at least 8 GB of memory. On an ordinary laptop the AI takes roughly half a minute to a minute per step. Nothing is sent to the internet: CVs stay on the computer.</p>
+</div>
+
+<h2>What you can show</h2>
+<ul>
+  <li><b>Candidates</b> upload a CV, see and correct what was read from it, check how they match an opening, apply, and take a short written skill test.</li>
+  <li><b>Recruiters</b> get an “evidence file” for each applicant: the match with the CV text behind it, every test answer with its score, and their own decision panel.</li>
+  <li><b>During the test</b>, candidates get a calm on-screen warning if they leave the page, keep the pointer outside it, or paste text; the recruiter sees the counts. When 3 or more candidates give the same answer, the recruiter is told.</li>
+  <li><b>Originality checks</b>: CVs that share a template or text with other applicants, a second account of the same person, and test answers copied between candidates are shown side by side with the matching passages.</li>
+  <li><b>The recruiter decides</b>: mark a finding “not a concern” or “a concern”, offer a second attempt, send a follow-up message, shortlist or reject. Nothing is accepted or rejected automatically.</li>
+</ul>
+
+<div class="card" style="border-left:8px solid #2d5a50">
+<h2 style="margin-top:0">Putting it on GitHub and getting a link anyone can open</h2>
+<p>GitHub keeps the files. A free hosting service (Render) runs the app and gives you the link. About 15 minutes, no coding.</p>
+<ol>
+  <li><b>Make two free accounts:</b> <b>github.com</b> (Sign up) and <b>render.com</b> (choose “Sign up with GitHub”).</li>
+  <li><b>Install GitHub Desktop</b> from <b>desktop.github.com</b> and sign in with your GitHub account. (The github.com website only accepts 100 files at a time; this folder has more, so the Desktop app is the easy way.)</li>
+  <li>In GitHub Desktop: <b>File → Add local repository…</b> → choose this <span class="file">TalentBridge</span> folder. It says the folder is not a repository yet: click <b>create a repository</b>, then <b>Create repository</b>.</li>
+  <li>Click <b>Publish repository</b> (top bar). Untick “Keep this code private” if you want others to see it. Click <b>Publish</b>.</li>
+  <li>Wait 2 minutes. GitHub fills in the links in the README by itself. On github.com, open your repository, scroll to <b>Put it online</b> and click <b>Deploy to Render</b>.</li>
+  <li>Render asks you to confirm: click <b>Apply</b> (or <b>Deploy</b>). After 5–10 minutes it shows your link, such as <code>https://talentbridge-xxxx.onrender.com</code>. Share that link.</li>
+</ol>
+<p class="small">The free Render plan sleeps when nobody uses it, so the first visit after a quiet spell takes about a minute, and it restarts with fresh fictional demo data. That is fine for showing the platform; for real candidates see docs/DEPLOY_ANYWHERE.md. Online, the AI part runs on the built-in rule engine unless an AI service is connected (same page).</p>
+</div>
+
+<h2>Sharing it with someone else</h2>
+<ul>
+  <li><b>To give someone the application:</b> send them the zip file you received (the same single file). They unzip it and open this page.</li>
+  <li><b>To give people a link</b>, follow the GitHub box above.</li>
+  <li>Before sharing a copy you have used, delete the <span class="file">data</span> and <span class="file">demo-data</span> folders so that no uploaded CVs travel with it.</li>
+</ul>
+
+<h2>If something goes wrong</h2>
+<ul>
+  <li><b>“Python was not found”</b>: Python is not installed, or the “Add python.exe to PATH” box was not ticked. Install it again with the box ticked.</li>
+  <li><b>“Port 5050 is already in use”</b>: the app is already running in another window. Use that one, or close it and start again.</li>
+  <li><b>The page does not open by itself</b>: open your browser and type <code>localhost:5050</code>.</li>
+  <li>To check everything on your computer, double-click <span class="file">test_windows.bat</span> or <span class="file">test_mac.command</span>. It runs the full set of checks and ends with PASSED or FAILED.</li>
+  <li>More help: <b>WINDOWS_SETUP_GUIDE.md</b> and <b>MAC_SETUP_GUIDE.md</b> (they open in Notepad or TextEdit).</li>
+</ul>
+
+<h2>Good to know</h2>
+<ul>
+  <li>The originality checks compare wording. They do not claim to know whether a person or an AI wrote something; they show what matches what and leave the judgement to you.</li>
+  <li>Messages to candidates always appear in the candidate’s account. They are also e-mailed only after an e-mail service has been connected (see README.md).</li>
+  <li>Before using it with real applicants, read the “Readiness” part of <b>AUDIT_REPORT.md</b>: privacy notice, consent and secure hosting still have to be arranged by your institution.</li>
+</ul>
+<p class="small">What was tested, and what could not be tested, is written down honestly in AUDIT_REPORT.md. What changed is in CHANGES.md.</p>
+</main>
+</body>
+</html>

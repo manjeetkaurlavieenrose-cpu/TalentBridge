@@ -1,0 +1,28 @@
+# After the folder is uploaded to GitHub, this fills in the repository's own address in README.md (the deploy buttons and badges),
+# so nobody has to edit anything by hand. It runs by itself on the first upload and does nothing after that.
+name: set-links
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fill in this repository's address
+        run: |
+          if grep -q "OWNER/REPO" README.md; then
+            sed -i "s#OWNER/REPO#${GITHUB_REPOSITORY}#g" README.md
+            LOWER=$(echo "${GITHUB_REPOSITORY}" | tr '[:upper:]' '[:lower:]')
+            sed -i "s#owner/repo#${LOWER}#g" README.md
+            git config user.name "github-actions"
+            git config user.email "github-actions@users.noreply.github.com"
+            git add README.md
+            git commit -m "Fill in the repository address in README.md"
+            git push
+          else
+            echo "Links already set."
+          fi

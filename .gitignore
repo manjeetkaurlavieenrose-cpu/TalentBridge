@@ -1,0 +1,52 @@
+# --- Secrets and local settings (never commit) ---
+.env
+.env.*
+!.env.example
+!.env.production.example
+*.pem
+*.key
+
+# --- Python / tooling ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# --- Personal data: databases, uploaded CVs, e-mail outbox, logs, backups ---
+data/
+demo-data/
+var/
+backups/
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.log
+*.eml
+uploads/
+outbox/
+pgdata/
+
+# Real CVs must never be committed. Only the fictional files in sample_data/ are tracked;
+# anything else dropped into sample_data/ is ignored.
+sample_data/*
+!sample_data/cv_priya_nair_data_analyst.pdf
+!sample_data/cv_rohan_mehta_software_engineer.pdf
+!sample_data/cv_meera_kapoor_marketing.docx
+!sample_data/cv_kiran_desai_undated_role.pdf
+!sample_data/cv_arjun_rao_template.pdf
+!sample_data/cv_sana_iqbal_template.pdf
+!sample_data/cv_dev_malhotra_template.pdf
+!sample_data/not_accepted/
+
+# Windows test log written by test_windows.bat
+test-results-windows.txt

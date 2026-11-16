@@ -1,0 +1,5 @@
+# For running the automated tests and regenerating the sample CVs.
+-r requirements.txt
+-r requirements-postgres.txt
+reportlab>=4.0
+pytest>=8.0

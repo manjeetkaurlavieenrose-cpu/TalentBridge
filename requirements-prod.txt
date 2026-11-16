@@ -1,0 +1,5 @@
+# Only for a real server deployment (see docs/DEPLOY.md). Not needed on your laptop.
+-r requirements.txt
+gunicorn>=22
+psycopg[binary]>=3.2
+# boto3>=1.34   # only if STORAGE_BACKEND=s3

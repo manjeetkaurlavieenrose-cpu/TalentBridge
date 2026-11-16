@@ -1,0 +1,2 @@
+# Only if AI_PROVIDER=anthropic (Claude API, paid; needs ANTHROPIC_API_KEY).
+anthropic>=2.0

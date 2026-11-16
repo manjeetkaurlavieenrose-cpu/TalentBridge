@@ -1,0 +1,2 @@
+# Kept so the original instruction "cd backend && pip install -r requirements.txt" still works.
+-r ../requirements.txt

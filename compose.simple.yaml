@@ -1,0 +1,20 @@
+# Run TalentBridge on any computer or server that has Docker, with one command:
+#     docker compose -f compose.simple.yaml up -d
+# then open http://localhost:8080 (or http://THE-SERVER-ADDRESS:8080). Data is kept in the "talentbridge-data" volume.
+# It shows the fictional demo logins. For real candidates, set DEMO_SEED to "0" and fill in ADMIN_EMAIL / ADMIN_PASSWORD below,
+# and put https in front (see docs/DEPLOY_ANYWHERE.md).
+services:
+  talentbridge:
+    build: .
+    ports:
+      - "8080:8000"
+    environment:
+      DEMO_SEED: "1"
+      DEMO_CANDIDATES: "1"
+      # ADMIN_EMAIL: you@example.org
+      # ADMIN_PASSWORD: choose-a-long-unique-password
+    volumes:
+      - talentbridge-data:/data
+    restart: unless-stopped
+volumes:
+  talentbridge-data:
