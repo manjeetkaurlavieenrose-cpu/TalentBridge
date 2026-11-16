@@ -16,6 +16,10 @@ jobs:
       matrix:
         os: [windows-latest, macos-latest, ubuntu-latest]
         python: ["3.10", "3.13"]
+        exclude:
+          # GitHub's free Mac machines are often unavailable; one Mac run keeps Mac covered without blocking the result
+          - os: macos-latest
+            python: "3.13"
     env:
       PYTHONUTF8: "1"
       CI: "1"
