@@ -4,14 +4,14 @@
 
 ## Put it online (a link anyone can open)
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/OWNER/REPO)
-[![tests](https://github.com/OWNER/REPO/actions/workflows/tests.yml/badge.svg)](https://github.com/OWNER/REPO/actions/workflows/tests.yml)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/manjeetkaurlavieenrose-cpu/TalentBridge)
+[![tests](https://github.com/manjeetkaurlavieenrose-cpu/TalentBridge/actions/workflows/tests.yml/badge.svg)](https://github.com/manjeetkaurlavieenrose-cpu/TalentBridge/actions/workflows/tests.yml)
 
 1. Click **Deploy to Render** above, sign in with your GitHub account, and click **Apply** (or **Deploy**). After a few minutes Render shows
    your link, for example `https://talentbridge-xxxx.onrender.com`. Open it: the demo logins are on the sign-in page.
 2. That is all. The free plan sleeps when nobody uses it (the first visit then takes about a minute) and restarts with fresh demo data.
 
-**Any other server with Docker:** `docker run -p 8080:8000 -v talentbridge-data:/data -e DEMO_SEED=1 -e DEMO_CANDIDATES=1 ghcr.io/owner/repo:latest`
+**Any other server with Docker:** `docker run -p 8080:8000 -v talentbridge-data:/data -e DEMO_SEED=1 -e DEMO_CANDIDATES=1 ghcr.io/manjeetkaurlavieenrose-cpu/talentbridge:latest`
 then open `http://SERVER-ADDRESS:8080`. The image is built and checked by GitHub on every upload (see the Actions tab).
 More options, real-use settings and limits: [docs/DEPLOY_ANYWHERE.md](docs/DEPLOY_ANYWHERE.md).
 
