@@ -14,12 +14,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        # macOS runs in mac.yml (weekly and on request): GitHub's free Mac machines are often unavailable and would block this result
+        os: [windows-latest, ubuntu-latest]
         python: ["3.10", "3.13"]
-        exclude:
-          # GitHub's free Mac machines are often unavailable; one Mac run keeps Mac covered without blocking the result
-          - os: macos-latest
-            python: "3.13"
     env:
       PYTHONUTF8: "1"
       CI: "1"

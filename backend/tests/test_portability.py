@@ -1,6 +1,7 @@
 """Things that differ on Windows: MIME types from the registry, Notepad-saved .env files, legacy console code pages, folders
 with spaces or non-English characters, the Windows Tesseract install folder, and batch-file line endings. These run on every
 platform so a Windows break is caught anywhere; .github/workflows/tests.yml also runs the whole suite on real Windows."""
+import re
 import io, mimetypes, os, shutil, sys, tempfile, unittest
 from .support import Base, Client, make_pdf, cv_text
 from app import create_app, ocr, pipeline as pl
@@ -160,6 +161,7 @@ class HostingDefaultsTests(unittest.TestCase):
         d = read("Dockerfile")
         self.assertIn('CMD ["python", "/app/run.py"]', d); self.assertIn("DEMO_SEED=0", d); self.assertIn("HEALTHCHECK", d)
         self.assertIn("runtime: docker", read("render.yaml")); self.assertIn("healthCheckPath: /api/v1/health", read("render.yaml"))
-        self.assertIn("OWNER/REPO", read("README.md"))                        # filled in by .github/workflows/set-links.yml after upload
+        readme = read("README.md")       # the placeholder before upload; set-links.yml then fills in the repository's own address
+        self.assertTrue("OWNER/REPO" in readme or re.search(r"render\.com/deploy\?repo=https://github\.com/[\w.-]+/[\w.-]+\)", readme), "deploy link missing")
         self.assertIn("gunicorn", read("compose.yaml"))
         self.assertTrue(read("docker-entrypoint.sh").startswith("#!/bin/sh"))

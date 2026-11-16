@@ -1,0 +1,30 @@
+# The same tests on macOS. Runs once a week and whenever you click "Run workflow" on the Actions tab (mac → Run workflow).
+# Kept apart from tests.yml because GitHub's free Mac machines are often busy, and a job that never starts would mark the main
+# result as failed even though nothing is wrong.
+name: mac
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * 1"
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUTF8: "1"
+      CI: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install packages
+        run: |
+          brew install tesseract || true
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt -r requirements-anthropic.txt
+      - name: Unit and integration tests
+        working-directory: backend
+        run: python -m unittest discover -s tests -t . -v
+      - name: End-to-end check of the running app
+        run: python scripts/smoke_test.py
